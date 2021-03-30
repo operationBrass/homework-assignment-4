@@ -143,6 +143,5 @@ resetA.addEventListener("click",function(){
 function retryQuiz()
 {
   $(".carousel").carousel(0)
- 
 }
 
