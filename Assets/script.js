@@ -56,7 +56,10 @@ function endQuiz()
 
 var skillsListEl = $('#leaderboard');
 let currentDate = new Date();
-let cDay =  currentDate.getDate()
+let cDay =  currentDate.getDate();
+let cMonth = currentDate.getMonth();
+let cYear = currentDate.getFullYear();
+let todayDate = cDay + "/" + cMonth + "/" + cYear;
 
 function printSkills(userName,date)
 {
@@ -69,7 +72,7 @@ function printSkills(userName,date)
 
   var listEl = $('<li>');
   var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%');
-  listEl.addClass('list-group-item').text(listDetail);
+  listEl.addClass('list-group-item bg-warning').text(listDetail);
   listEl.appendTo(skillsListEl);
 };
 
@@ -78,7 +81,7 @@ subName.addEventListener("click",function() {
 
   if (inputName != "" )
   {
-    printSkills(inputName,cDay);
+    printSkills(inputName,todayDate);
   }
 
 });
