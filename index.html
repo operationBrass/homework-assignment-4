@@ -127,19 +127,17 @@
                 <div class="carousel-item">
                   <div id="card-6" class="container border d-flex flex-column div-custom p-3">
                     <h2 class="display-5"> Leaderboard </h2>
-                    <P class="lead">See how you rank! </P>    
-                      <form id="skills-form">
-                        <div class="container row d-flex justify-content-center">
-                          <label for="skill" class="col-sm-4 col-form-label">
-                            <p>Your Name:</p>
-                  
-                          </label>
-                            <input type="text" class="form-control w-75 text-center " id="skill-name" >
-                            <a id="subName" class="btn btn-info ml-3">
+                    <P class="lead">Submit your name and see how you rank! </P>    
+                        <div class="container flex-column d-flex justify-content-center align-items-center">
+                          <div class="form-outline w-50">
+                            <input type="text" id="typeText" class="form-control" />
+                            <label class="form-label" for="typeText">Text input</label>
+                          </div>
+                            <a id="subName" class="btn btn-info">
                               Submit
                             </a>
-                          </form>
-                          <ul id="leaderboard" class="list-group list-group-flush">
+                       </div>
+                          <ul id="leaderboard" class="list-group list-group-flush mt-2">
                             
                           </ul>
                     </div>

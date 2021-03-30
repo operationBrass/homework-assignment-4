@@ -55,10 +55,12 @@ function endQuiz()
 
 
 var skillsListEl = $('#leaderboard');
+let currentDate = new Date();
+let cDay =  currentDate.getDate()
 
 function printSkills(userName,date)
 {
-  console.log(userName)
+
 
   if(userName == "")
   {
@@ -66,12 +68,18 @@ function printSkills(userName,date)
   }
 
   var listEl = $('<li>');
-  var listDetail = userName.concat(' on ', date);
+  var listDetail = userName.concat(' on ', date, ' with a score of ', answer);
   listEl.addClass('list-group-item').text(listDetail);
   listEl.appendTo(skillsListEl);
   
 };
 
 subName.addEventListener("click",function() {
-console.log($("#subName").val());
+  var inputName = $("#typeText").val();
+
+  if (inputName != "" )
+  {
+    printSkills(inputName,cDay);
+  }
+
 });
