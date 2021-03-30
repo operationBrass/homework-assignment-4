@@ -44,6 +44,7 @@ $(".carousel").carousel({
   function changeElement(id, newPro) {
     var el = document.getElementById(id);
     el.style.width = newPro;
+    $("#progressText").text(newPro + " complete");
   }
 
   $("#carouselQuiz").on("slide.bs.carousel", function (e) {
