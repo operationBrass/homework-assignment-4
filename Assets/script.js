@@ -1,5 +1,5 @@
 
-$('.carousel').carousel({
+$(".carousel").carousel({
     interval:false
   });
 
@@ -12,13 +12,14 @@ $('.carousel').carousel({
 
   quizBox.addEventListener("click", function(event)
   {
-      if(event.target.type == "button")
+      if(event.target.type == "button" && event.target.type != "submit")
       {
         answerID = event.target.id;
         answer.push(answerID.substring(answerID.indexOf("-")+1)); //return the number of btn element which = answer chosen
         if(answer.length < 5)
         {
-        $('.carousel').carousel("next")
+        $(".carousel").carousel("next")
+        $(".progress-bar-striped").style = "width:40%";
         }
         else
         {
@@ -27,7 +28,7 @@ $('.carousel').carousel({
       }
   });
 
-  $('#carouselQuiz').on('slide.bs.carousel', function (e) {
+  $("#carouselQuiz").on("slide.bs.carousel", function (e) {
   })
 
 function timer()
@@ -48,12 +49,29 @@ function endQuiz()
       }
     }
 
-    $('.carousel').carousel("next")
+    $(".carousel").carousel("next")
 }
 
-var printSkills = function (name, date) {
+
+
+var skillsListEl = $('#leaderboard');
+
+function printSkills(userName,date)
+{
+  console.log(userName)
+
+  if(userName == "")
+  {
+    return;
+  }
+
   var listEl = $('<li>');
-  var listDetail = name.concat(' on ', date);
+  var listDetail = userName.concat(' on ', date);
   listEl.addClass('list-group-item').text(listDetail);
   listEl.appendTo(skillsListEl);
+  
 };
+
+subName.addEventListener("click",function() {
+console.log($("#subName").val());
+});
