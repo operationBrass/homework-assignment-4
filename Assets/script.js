@@ -5,7 +5,6 @@ $(".carousel").carousel({
   let quizBox = document.querySelector(".carousel");
   let quizButtons = document.querySelector(".btn");
   let answer = [];
-  let scoreBoard = [];
   let score = 0;
   let progressBar = "20" 
   let answerID;
@@ -137,6 +136,7 @@ subName.addEventListener("click",function() {
       }
       score = score / 5 * 100;
       
+      
       $(".carousel").carousel("next")
   }
 
@@ -148,8 +148,10 @@ resetA.addEventListener("click",function(){
 
 function retryQuiz()
 {
+  answer.length = 0;
+  score = 0;
+  changeElement("progressBar","20%");
   $(".carousel").carousel(0)
-  changeElement("progressBar","30%");
   startTimer();
 }
 
