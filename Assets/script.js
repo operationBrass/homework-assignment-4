@@ -135,6 +135,7 @@ subName.addEventListener("click",function() {
           score = score + 1;
         }
       }
+      console.log(score)
       score = score / 5 * 100;
       
       
