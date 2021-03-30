@@ -9,6 +9,7 @@ $(".carousel").carousel({
   let score = 0;
   let progressBar = "20" 
   let answerID;
+  let newTimer; 
 
   quizBox.addEventListener("click", function(event)
   {
@@ -85,10 +86,15 @@ subName.addEventListener("click",function() {
   let endDate = new Date();
   endDate.setMinutes(endDate.getMinutes()+5); 
   
-  var myVar = setInterval(setTimer, 1000);
+  function startTimer()
+  {
+   newTimer = setInterval(setTimer, 1000);
+  }
+
+  startTimer();
   
   function myStopFunction() {
-    clearInterval(myVar);
+    clearInterval(newTimer);
   }
 
  function setTimer()
@@ -143,5 +149,6 @@ resetA.addEventListener("click",function(){
 function retryQuiz()
 {
   $(".carousel").carousel(0)
+  startTimer();
 }
 
