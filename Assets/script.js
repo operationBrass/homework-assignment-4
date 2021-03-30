@@ -8,6 +8,7 @@ $(".carousel").carousel({
   let quizButtons = document.querySelector(".btn");
   let answer = [];
   let scoreBoard = [];
+  let score = 0;
   let answerID;
 
   quizBox.addEventListener("click", function(event)
@@ -19,7 +20,6 @@ $(".carousel").carousel({
         if(answer.length < 5)
         {
         $(".carousel").carousel("next")
-        $(".progress-bar-striped").style = "width:40%";
         }
         else
         {
@@ -39,7 +39,7 @@ function timer()
 function endQuiz()
 {
     let answers = ["2","4","1","3","3"];
-    let score = 0;
+    
 
     for(i=0; i< answers.length; i++)
     {
@@ -48,7 +48,7 @@ function endQuiz()
         score = score + 1;
       }
     }
-
+    score = score / 5 * 100;
     $(".carousel").carousel("next")
 }
 
@@ -68,10 +68,9 @@ function printSkills(userName,date)
   }
 
   var listEl = $('<li>');
-  var listDetail = userName.concat(' on ', date, ' with a score of ', answer);
+  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%');
   listEl.addClass('list-group-item').text(listDetail);
   listEl.appendTo(skillsListEl);
-  
 };
 
 subName.addEventListener("click",function() {
