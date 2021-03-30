@@ -20,22 +20,23 @@ $(".carousel").carousel({
         {
           switch (answer.length)
           {
-            case 1: changeElement("progressBar","40%") ;
+            case 1: changeElement("progressBar","30%");
             break;
-            case 2: changeElement("progressBar","60%");
+            case 2: changeElement("progressBar","50%");
             break;
-            case 3: changeElement("progressBar","80%");
+            case 3: changeElement("progressBar","70%");
             break;
-            case 4: changeElement("progressBar","100%");
-            
+            case 4: changeElement("progressBar","90%");
+            break;
+            default: changeElement("progressBar","0%");
           }
         $(".carousel").carousel("next")
         }
         else
         {
-            endQuiz();
+          changeElement("progressBar","100%");
+          endQuiz();
         }
-   
       }
   });
 
@@ -70,6 +71,7 @@ function printSkills(userName,date)
   listEl.appendTo(skillsListEl);
 };
 
+var subName = document.getElementById("subName");
 subName.addEventListener("click",function() {
   var inputName = $("#typeText").val();
 
@@ -97,7 +99,6 @@ subName.addEventListener("click",function() {
       "<span class='label'>MIN(S)</span>";
       document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
       "<span class='label'>SEC(S)</span>";
-      console.log(secs)
     }
   }, 1000);
 
@@ -108,7 +109,7 @@ subName.addEventListener("click",function() {
       clearInterval(setTimer);
       document.getElementById("timer-mins").innerHTML= "";
       document.getElementById("timer-secs").innerHTML= "";
-      
+
       for(i=0; i< answers.length; i++)
       {
         if (answers[i] === answer[i])
