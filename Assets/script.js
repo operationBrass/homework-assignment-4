@@ -1,8 +1,6 @@
-
 $(".carousel").carousel({
     interval:false
   });
-
 
   let quizBox = document.querySelector(".carousel");
   let quizButtons = document.querySelector(".btn");
@@ -50,28 +48,6 @@ $(".carousel").carousel({
   $("#carouselQuiz").on("slide.bs.carousel", function (e) {
   })
 
-function timer()
-{
-    
-}
-
-function endQuiz()
-{
-    let answers = ["2","4","1","3","3"];
-    
-
-    for(i=0; i< answers.length; i++)
-    {
-      if (answers[i] === answer[i])
-      {
-        score = score + 1;
-      }
-    }
-    score = score / 5 * 100;
-    $(".carousel").carousel("next")
-}
-
-
 
 var skillsListEl = $('#leaderboard');
 let currentDate = new Date();
@@ -82,8 +58,7 @@ let todayDate = cDay + "/" + cMonth + "/" + cYear;
 
 function printSkills(userName,date)
 {
-
-
+  
   if(userName == "")
   {
     return;
@@ -105,13 +80,10 @@ subName.addEventListener("click",function() {
 
 });
 
-
-function startTimer()
-{
   let endDate = new Date();
   endDate.setMinutes(endDate.getMinutes()+5); 
 
-  setInterval(function() 
+ var setTimer = setInterval(function() 
   {
     /* define new varible with current time */
     let curDate = new Date().getTime();
@@ -121,13 +93,31 @@ function startTimer()
     {
       let mins = Math.floor((timeRemain % (1000 * 60 * 60)) / (1000 * 60));
       let secs = Math.floor((timeRemain % (1000 * 60)) / 1000);
-      document.getElementById("timer-mins").innerHTML= ("0" + mins).slice(-2) +
+      document.getElementById("timer-mins").innerHTML= "Time Left: " + ("0" + mins).slice(-2) +
       "<span class='label'>MIN(S)</span>";
       document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
       "<span class='label'>SEC(S)</span>";
       console.log(secs)
     }
   }, 1000);
-}
 
-startTimer();
+
+  function endQuiz()
+  {
+      let answers = ["2","4","1","3","3"];
+      clearInterval(setTimer);
+      document.getElementById("timer-mins").innerHTML= "";
+      document.getElementById("timer-secs").innerHTML= "";
+      
+      for(i=0; i< answers.length; i++)
+      {
+        if (answers[i] === answer[i])
+        {
+          score = score + 1;
+        }
+      }
+      score = score / 5 * 100;
+      
+      $(".carousel").carousel("next")
+  }
+  
