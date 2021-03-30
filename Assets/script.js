@@ -9,6 +9,7 @@ $(".carousel").carousel({
   let answer = [];
   let scoreBoard = [];
   let score = 0;
+  let progressBar = "20" 
   let answerID;
 
   quizBox.addEventListener("click", function(event)
@@ -16,17 +17,34 @@ $(".carousel").carousel({
       if(event.target.type == "button" && event.target.type != "submit")
       {
         answerID = event.target.id;
-        answer.push(answerID.substring(answerID.indexOf("-")+1)); //return the number of btn element which = answer chosen
+        answer.push(answerID.substring(answerID.indexOf("-")+1)); //break the number of btn element which = answer chosen
         if(answer.length < 5)
         {
+          switch (answer.length)
+          {
+            case 1: changeElement("progressBar","40%") ;
+            break;
+            case 2: changeElement("progressBar","60%");
+            break;
+            case 3: changeElement("progressBar","80%");
+            break;
+            case 4: changeElement("progressBar","100%");
+            
+          }
         $(".carousel").carousel("next")
         }
         else
         {
             endQuiz();
         }
+   
       }
   });
+
+  function changeElement(id, newPro) {
+    var el = document.getElementById(id);
+    el.style.width = newPro;
+  }
 
   $("#carouselQuiz").on("slide.bs.carousel", function (e) {
   })
@@ -96,7 +114,7 @@ setInterval(() => {
   var fiveMin = 60 * 5; //five minutes is 300 seconds!
   var timeleft = fiveMin - seconds % fiveMin; // let's say now is 01:30, then current seconds is 60+30 = 90. And 90%300 = 90, finally 300-90 = 210. That's the time left!
   var result = parseInt(timeleft / 60) + ':' + timeleft % 60; //formart seconds back into mm:ss 
-  console.log(document.getElementById('timer').innerHTML = "Time to go: " + result);
+  document.getElementById('timer').innerHTML = "Time to go: " + result;
 
 }, 500);
 
