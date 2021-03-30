@@ -26,7 +26,10 @@ body
     width:20%;
 }
 
-
+#timer
+{
+    font-size: 1.5rem;
+}
 
 h2,h4,p
 {

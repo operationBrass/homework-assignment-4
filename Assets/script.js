@@ -106,17 +106,28 @@ subName.addEventListener("click",function() {
 });
 
 
+function startTimer()
+{
+  let endDate = new Date();
+  endDate.setMinutes(endDate.getMinutes()+5); 
 
-//count down timer
-setInterval(() => {
-  
-  var d = new Date(); //get current time
-  var seconds = d.getMinutes() * 60 + d.getSeconds(); //convet current mm:ss to seconds for easier caculation, we don't care hours.
-  var fiveMin = 60 * 5; //five minutes is 300 seconds!
-  var timeleft = fiveMin - seconds % fiveMin; // let's say now is 01:30, then current seconds is 60+30 = 90. And 90%300 = 90, finally 300-90 = 210. That's the time left!
-  var result = parseInt(timeleft / 60) + ':' + timeleft % 60; //formart seconds back into mm:ss 
-  document.getElementById('timer').innerHTML = "Time to go: " + result;
+  setInterval(function() 
+  {
+    /* define new varible with current time */
+    let curDate = new Date().getTime();
+    let timeRemain = endDate - curDate;
 
-}, 500);
+    if (timeRemain >= 0 )
+    {
+      let mins = Math.floor((timeRemain % (1000 * 60 * 60)) / (1000 * 60));
+      let secs = Math.floor((timeRemain % (1000 * 60)) / 1000);
+      document.getElementById("timer-mins").innerHTML= ("0" + mins).slice(-2) +
+      "<span class='label'>MIN(S)</span>";
+      document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
+      "<span class='label'>SEC(S)</span>";
+      console.log(secs)
+    }
+  }, 1000);
+}
 
-
+startTimer();
