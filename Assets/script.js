@@ -7,6 +7,7 @@ $('.carousel').carousel({
   let quizBox = document.querySelector(".carousel");
   let quizButtons = document.querySelector(".btn");
   let answer = [];
+  let scoreBoard = [];
   let answerID;
 
   quizBox.addEventListener("click", function(event)
@@ -36,5 +37,23 @@ function timer()
 
 function endQuiz()
 {
-    let answers = ["2","4","1","3","2"];
+    let answers = ["2","4","1","3","3"];
+    let score = 0;
+
+    for(i=0; i< answers.length; i++)
+    {
+      if (answers[i] === answer[i])
+      {
+        score = score + 1;
+      }
+    }
+
+    $('.carousel').carousel("next")
 }
+
+var printSkills = function (name, date) {
+  var listEl = $('<li>');
+  var listDetail = name.concat(' on ', date);
+  listEl.addClass('list-group-item').text(listDetail);
+  listEl.appendTo(skillsListEl);
+};
