@@ -84,8 +84,14 @@ subName.addEventListener("click",function() {
 
   let endDate = new Date();
   endDate.setMinutes(endDate.getMinutes()+5); 
+  
+  var myVar = setInterval(setTimer, 1000);
+  
+  function myStopFunction() {
+    clearInterval(myVar);
+  }
 
- var setTimer = setInterval(function() 
+ function setTimer()
   {
     /* define new varible with current time */
     let curDate = new Date().getTime();
@@ -100,13 +106,19 @@ subName.addEventListener("click",function() {
       document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
       "<span class='label'>SEC(S)</span>";
     }
-  }, 1000);
+    else
+    {
+      endQuiz();
+    }
+
+  }
+
 
 
   function endQuiz()
   {
       let answers = ["2","4","1","3","3"];
-      clearInterval(setTimer);
+      myStopFunction();
       document.getElementById("timer-mins").innerHTML= "";
       document.getElementById("timer-secs").innerHTML= "";
 
@@ -121,4 +133,16 @@ subName.addEventListener("click",function() {
       
       $(".carousel").carousel("next")
   }
-  
+
+var resetA = document.getElementById("reset");
+
+resetA.addEventListener("click",function(){
+  retryQuiz();
+})
+
+function retryQuiz()
+{
+  $(".carousel").carousel(0)
+ 
+}
+
