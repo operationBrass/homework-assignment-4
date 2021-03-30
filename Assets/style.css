@@ -21,6 +21,11 @@ body
 }
 
 
+.progress-bar-striped
+{
+    width:20%;
+}
+
 
 h2,h4,p
 {
