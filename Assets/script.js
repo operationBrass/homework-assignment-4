@@ -56,7 +56,6 @@ let cDay =  currentDate.getDate();
 let cMonth = currentDate.getMonth();
 let cYear = currentDate.getFullYear();
 let todayDate = cDay + "/" + cMonth + "/" + cYear;
-let endDate;
 
 function printSkills(userName,date)
 {
@@ -83,18 +82,21 @@ subName.addEventListener("click",function() {
 
 });
 
+  let endDate = new Date();
+  endDate.setMinutes(endDate.getMinutes()+5); 
+  
   function startTimer()
   {
-    endDate = new Date();
-    endDate.setMinutes(endDate.getMinutes()+5); 
-   newTimer = setInterval(setTimer(endDate), 1000);
+   newTimer = setInterval(setTimer, 1000);
   }
 
+  startTimer();
+  
   function myStopFunction() {
     clearInterval(newTimer);
   }
 
- function setTimer(timeRemain)
+ function setTimer()
   {
     /* define new varible with current time */
     let curDate = new Date().getTime();
@@ -109,7 +111,7 @@ subName.addEventListener("click",function() {
       document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
       "<span class='label'>SEC(S)</span>";
     }
-
+    
     else
     {
       endQuiz();
