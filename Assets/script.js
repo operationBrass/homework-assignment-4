@@ -141,16 +141,4 @@ subName.addEventListener("click",function() {
       $(".carousel").carousel("next")
   }
 
-var resetA = document.getElementById("reset");
-
-resetA.addEventListener("click",function(){
-  retryQuiz();
-})
-
-function retryQuiz()
-{
-  $(".carousel").carousel(0)
-  changeElement("progressBar","20%");
-  startTimer();
-}
 
