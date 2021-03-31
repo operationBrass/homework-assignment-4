@@ -102,8 +102,6 @@ subName.addEventListener("click",function() {
     /* define new varible with current time */
     let curDate = new Date().getTime();
     let timeRemain = endDate - curDate;
-
-    if (timeRemain >= 0 )
     {
       let mins = Math.floor((timeRemain % (1000 * 60 * 60)) / (1000 * 60));
       let secs = Math.floor((timeRemain % (1000 * 60)) / 1000);
@@ -112,11 +110,6 @@ subName.addEventListener("click",function() {
       document.getElementById("timer-secs").innerHTML= ("0" + secs).slice(-2) +
       "<span class='label'>SEC(S)</span>";
     }
-    else
-    {
-      endQuiz();
-    }
-
   }
 
 
@@ -135,11 +128,9 @@ subName.addEventListener("click",function() {
           score = score + 1;
         }
       }
-      console.log(score)
       score = score / 5 * 100;
-      
-      
       $(".carousel").carousel("next")
+
   }
 
 
