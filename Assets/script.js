@@ -8,7 +8,7 @@ $(".carousel").carousel({
   let scoreBoard = [];
   let progressBar = "20" 
   let newTimer; 
-  let currentQ = 1;
+  let currentQ;
   let gameOver = false;
 
   quizBox.addEventListener("click", function(event)
@@ -16,40 +16,43 @@ $(".carousel").carousel({
       if(!gameOver && event.target.type == "button" && event.target.type != "submit")
       {
         let answerID = event.target.id;
-        answerID = answerID.substring(answerID.indexOf("-")+1)
-        console.log(answer)
-        if (currentQ > answer.length)
-        {
-        answer.push(answerID);
-
-        // update the progress bar
-          switch (answer.length)
-          {
-            case 1: changeElement("progressBar","30%");
-        
-            currentQ++;
-            break;
-            case 2: changeElement("progressBar","50%");
-    
-            currentQ++;
-            break;
-            case 3: changeElement("progressBar","70%");
-    
-            currentQ++;
-            break;
-            case 4: changeElement("progressBar","90%");
-        
-            currentQ++;
-            break;
-            default:changeElement("progressBar","100%");
-            currentQ++;
-            gameOver = true;
-            endQuiz();
-          }
-        $(".carousel").carousel("next");
-        }
+        answerID = answerID.substring(answerID.indexOf("-")+1);
+        nextQuestion(answerID,currentQ++);
       }
   });
+
+  function nextQuestion(id)
+  {
+
+
+
+    // update the progress bar
+      switch (answer.length)
+      {
+        case 1: changeElement("progressBar","30%");
+    
+        currentQ++;
+        break;
+        case 2: changeElement("progressBar","50%");
+
+        currentQ++;
+        break;
+        case 3: changeElement("progressBar","70%");
+
+        currentQ++;
+        break;
+        case 4: changeElement("progressBar","90%");
+    
+        currentQ++;
+        break;
+        default:changeElement("progressBar","100%");
+        currentQ++;
+        gameOver = true;
+        endQuiz();
+      }
+    $(".carousel").carousel("next");
+    }
+  }
 
   function changeElement(id, newPro) {
     var el = document.getElementById(id);
@@ -143,7 +146,7 @@ function returnResult(userAnswers)
 {
   let answers = ["2","4","1","3","3"];
   let score = 0;
-  for(i=1; i< answers.length-1; i++)
+  for(i=0; i< answers.length; i++)
   {
     if (answers[i] == answer[i])
     {
