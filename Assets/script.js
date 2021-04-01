@@ -139,8 +139,6 @@ function writeElement(textToWrite)
     }
   }
 
-
-
   function endQuiz()
   {
       let answers = ["2","4","1","3","3"];
