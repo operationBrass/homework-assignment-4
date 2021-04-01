@@ -78,7 +78,7 @@ function leaderBoardWrite(userName,date)
     return;
   }
 
-  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%');
+  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '% result (', answer, ')');
 
   scoreBoard.push(listDetail);
   localStorage.setItem("scores", JSON.stringify(scoreBoard));
@@ -151,8 +151,14 @@ function writeElement(textToWrite)
         if (answers[i] === answer[i])
         {
           score = score + 1;
+          answer[i] = "Y"
+        }
+        else
+        {
+          answer[i] = "N"
         }
       }
+
       score = score / 5 * 100;
       $(".carousel").carousel("next")
 
