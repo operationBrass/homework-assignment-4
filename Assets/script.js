@@ -24,6 +24,7 @@ $(".carousel").carousel({
             case 1: changeElement("progressBar","30%");
             break;
             case 2: changeElement("progressBar","50%");
+      
             break;
             case 3: changeElement("progressBar","70%");
             break;
@@ -47,8 +48,6 @@ $(".carousel").carousel({
     $("#progressText").text(newPro + " Progress");
   }
 
-  $("#carouselQuiz").on("slide.bs.carousel", function (e) {
-  })
 
 
 var skillsListEl = $('#leaderboard');
@@ -58,7 +57,20 @@ let cMonth = currentDate.getMonth();
 let cYear = currentDate.getFullYear();
 let todayDate = cDay + "/" + cMonth + "/" + cYear;
 
-function printSkills(userName,date)
+
+var subName = document.getElementById("subName");
+
+subName.addEventListener("click",function() {
+var inputName = $("#typeText").val();
+
+  if (inputName != "" )
+  {
+    leaderBoardWrite(inputName,todayDate);
+  }
+
+});
+
+function leaderBoardWrite(userName,date)
 {
   
   if(userName == "")
@@ -66,22 +78,37 @@ function printSkills(userName,date)
     return;
   }
 
-  var listEl = $('<li>');
   var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%');
-  listEl.addClass('list-group-item bg-warning').text(listDetail);
-  listEl.appendTo(skillsListEl);
+
+  scoreBoard.push(listDetail);
+  localStorage.setItem("scores", JSON.stringify(scoreBoard));
+  writeElement(listDetail);
 };
 
-var subName = document.getElementById("subName");
-subName.addEventListener("click",function() {
-  var inputName = $("#typeText").val();
+function leaderBoardRead()
+{
 
-  if (inputName != "" )
+  var readBoard = JSON.parse( localStorage.getItem('scores') );
+
+  if(readBoard.lenght != 0)
+{
+  for (i=0; i<readBoard.length; i++)
   {
-    printSkills(inputName,todayDate);
+    leaderBoardWrite(readBoard[i])
   }
 
-});
+}
+
+}
+
+leaderBoardRead();
+
+function writeElement(textToWrite)
+{
+  var listEl = $('<li>');
+  listEl.addClass('list-group-item bg-warning').text(textToWrite);
+  listEl.appendTo(skillsListEl);
+}
 
   let endDate = new Date();
   endDate.setMinutes(endDate.getMinutes()+5); 
