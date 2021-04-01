@@ -78,7 +78,7 @@ function leaderBoardWrite(userName,date)
     return;
   }
 
-  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '% result (', answer, ')');
+  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%  (', answer, ')');
 
   scoreBoard.push(listDetail);
   localStorage.setItem("scores", JSON.stringify(scoreBoard));
