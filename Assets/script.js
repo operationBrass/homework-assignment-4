@@ -6,59 +6,50 @@ $(".carousel").carousel({
   let quizButtons = document.querySelector(".btn");
   let answer = [];
   let scoreBoard = [];
+  let score = 0;
   let progressBar = "20" 
+  let answerID;
   let newTimer; 
-  let currentQ;
-  let gameOver = false;
 
   quizBox.addEventListener("click", function(event)
   {
-      if(!gameOver && event.target.type == "button" && event.target.type != "submit")
+      if(event.target.type == "button" && event.target.type != "submit")
       {
-        let answerID = event.target.id;
-        answerID = answerID.substring(answerID.indexOf("-")+1);
-        nextQuestion(answerID,currentQ++);
+        answerID = event.target.id;
+        answer.push(answerID.substring(answerID.indexOf("-")+1)); //break the number of btn element which = answer chosen
+        if(answer.length < 5)
+        {
+          switch (answer.length)
+          {
+            case 1: changeElement("progressBar","30%");
+            break;
+            case 2: changeElement("progressBar","50%");
+            break;
+            case 3: changeElement("progressBar","70%");
+            break;
+            case 4: changeElement("progressBar","90%");
+            break;
+            default: changeElement("progressBar","0%");
+          }
+        $(".carousel").carousel("next")
+        }
+        else
+        {
+          changeElement("progressBar","100%");
+          endQuiz();
+        }
       }
   });
-
-  function nextQuestion(id)
-  {
-
-
-
-    // update the progress bar
-      switch (answer.length)
-      {
-        case 1: changeElement("progressBar","30%");
-    
-        currentQ++;
-        break;
-        case 2: changeElement("progressBar","50%");
-
-        currentQ++;
-        break;
-        case 3: changeElement("progressBar","70%");
-
-        currentQ++;
-        break;
-        case 4: changeElement("progressBar","90%");
-    
-        currentQ++;
-        break;
-        default:changeElement("progressBar","100%");
-        currentQ++;
-        gameOver = true;
-        endQuiz();
-      }
-    $(".carousel").carousel("next");
-    }
-  
 
   function changeElement(id, newPro) {
     var el = document.getElementById(id);
     el.style.width = newPro;
     $("#progressText").text(newPro + " Progress");
   }
+
+  $("#carouselQuiz").on("slide.bs.carousel", function (e) {
+  })
+
 
 var skillsListEl = $('#leaderboard');
 let currentDate = new Date();
@@ -69,23 +60,16 @@ let todayDate = cDay + "/" + cMonth + "/" + cYear;
 
 function printSkills(userName,date)
 {
-  let score = returnResult(answer);
-
+  
   if(userName == "")
   {
     return;
   }
 
-  if(score != 0)
-  {
-    score = (score /5) * 100
-  }
-
   var listEl = $('<li>');
   var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%');
-  listEl.addClass('list-group-item bg-warning m-1').text(listDetail);
+  listEl.addClass('list-group-item bg-warning').text(listDetail);
   listEl.appendTo(skillsListEl);
-
 };
 
 var subName = document.getElementById("subName");
@@ -132,30 +116,21 @@ subName.addEventListener("click",function() {
 
   function endQuiz()
   {
-    console.log("aanswers length ", answer.length)
-     
+      let answers = ["2","4","1","3","3"];
       myStopFunction();
       document.getElementById("timer-mins").innerHTML= "";
       document.getElementById("timer-secs").innerHTML= "";
+
+      for(i=0; i< answers.length; i++)
+      {
+        if (answers[i] === answer[i])
+        {
+          score = score + 1;
+        }
+      }
+      score = score / 5 * 100;
       $(".carousel").carousel("next")
 
   }
-
-
-function returnResult(userAnswers)
-{
-  let answers = ["2","4","1","3","3"];
-  let score = 0;
-  for(i=0; i< answers.length; i++)
-  {
-    if (answers[i] == answer[i])
-    {
-      score = score + 1;
-    }
-  }
-
-  return score;
-}
-
 
 
