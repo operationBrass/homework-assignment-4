@@ -52,7 +52,7 @@ $(".carousel").carousel({
       }
     $(".carousel").carousel("next");
     }
-  }
+  
 
   function changeElement(id, newPro) {
     var el = document.getElementById(id);
