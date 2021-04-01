@@ -90,7 +90,7 @@ function leaderBoardRead()
 
   var readBoard = JSON.parse( localStorage.getItem('scores') );
 
-  if(readBoard.lenght != 0)
+  if(readBoard != null)
 {
   for (i=0; i<readBoard.length; i++)
   {
@@ -158,4 +158,10 @@ function writeElement(textToWrite)
 
   }
 
+  let clearAll = document.getElementById("clearStorage")
+  clearAll.addEventListener("click", function(){
+    localStorage.clear()
+    $('li').remove();
+  }
+    );
 
