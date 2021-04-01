@@ -94,7 +94,7 @@ function leaderBoardRead()
 {
   for (i=0; i<readBoard.length; i++)
   {
-    leaderBoardWrite(readBoard[i])
+    writeElement(readBoard[i])
   }
 
 }
