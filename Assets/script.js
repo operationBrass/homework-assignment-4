@@ -88,13 +88,13 @@ function leaderBoardWrite(userName,date)
 function leaderBoardRead()
 {
 
-  var readBoard = JSON.parse( localStorage.getItem('scores') );
+ scoreBoard = JSON.parse( localStorage.getItem('scores') );
 
-  if(readBoard != null)
+  if(scoreBoard!= null)
 {
-  for (i=0; i<readBoard.length; i++)
+  for (i=0; i<scoreBoard.length; i++)
   {
-    writeElement(readBoard[i])
+    writeElement(scoreBoard[i])
   }
 
 }
