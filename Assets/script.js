@@ -5,7 +5,6 @@ $(".carousel").carousel({
   let quizBox = document.querySelector(".carousel");
   let quizButtons = document.querySelector(".btn");
   let answer = [];
-  let scoreBoard = [];
   let score = 0;
   let progressBar = "20" 
   let answerID;
@@ -13,8 +12,9 @@ $(".carousel").carousel({
 
   quizBox.addEventListener("click", function(event)
   {
-      if(event.target.type == "button" && event.target.type != "submit")
+      if(event.target.type == "button" && event.target.id != "subName")
       {
+
         answerID = event.target.id;
         answer.push(answerID.substring(answerID.indexOf("-")+1)); //break the number of btn element which = answer chosen
         if(answer.length < 5)
@@ -50,7 +50,8 @@ $(".carousel").carousel({
 
 
 
-var skillsListEl = $('#leaderboard');
+let skillsListEl = $('#leaderboard');
+var scoreBoard = [];
 let currentDate = new Date();
 let cDay =  currentDate.getDate();
 let cMonth = currentDate.getMonth();
@@ -78,8 +79,12 @@ function leaderBoardWrite(userName,date)
     return;
   }
 
-  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%  (', answer, ')');
+  else if(scoreBoard === null)
+  {
+    scoreBoard = [];
+  }
 
+  var listDetail = userName.concat(' on ', date, ' with a score of ', score, '%  (', answer, ')');
   scoreBoard.push(listDetail);
   localStorage.setItem("scores", JSON.stringify(scoreBoard));
   writeElement(listDetail);
